@@ -1,0 +1,55 @@
+<!--Bootstrap: xs(phones), sm(tablets), md(desktops), lg(larger desktops)-->
+
+ 
+
+<div class="row detail-container indent">
+	<div class="detail-price pull-right">{{listing.FormattedListingPrice}}</div>
+	<div class="detail-addr">{{listing.Address}} {{listing.City}}, {{listing.Region}} {{listing.ZipCode}}</div>
+</div>
+
+<!-- http:{{listing.PhotoSourcePath}}HBMLG_{{listing.MLSListingID}}.jpg -->
+<img ng-src="{{mainImageUrl}}" class="img-thumbnail img-responsive indent" />
+<div class="detail-container indent">{{listing.INetRemarks}}</div>
+<div class="specs-shim"></div>
+
+<div class="detail-container hidden-xs">
+	<ul class="detail-thumbs">
+	  <li ng-repeat="img in thumbs">
+	    <img ng-src="{{img}}" ng-click="setImage(img)" class="img-thumbnail">
+	  </li>
+	</ul>
+</div>
+
+<div class="indent">        
+<ul class="specs">
+  	<li>
+	  	<div><b>Type</b> {{listing.ListingSchemaType}}</div>
+	    <div><b>{{listing.Beds}}</b> Bedrooms</div>
+	    <div><b>{{listing.Baths}}</b> Bathrooms</div>
+	    <div><b>{{listing.Acres}}</b> Acres</div>
+	    <div><b>{{listing.SqFt}}</b> Sq Feet</div>
+	    <div class="specs-shim"></div>
+  	</li>
+
+	<li>
+	    <div><b>MLS-Id</b> {{listing.MLSListingID}}</div>
+	    <div><b>Built In</b> {{listing.YearBuilt}}</div>
+	    <div><b>Status</b> {{listing.StatusString}}</div>
+	    <div><b>Listed for</b> {{listing.DaysListed}} days</div>
+	    <div class="specs-shim"></div>
+  	</li>
+  
+ 	<li>
+	    <div><b>MLS-Id</b> {{listing.MLSListingID}}</div>
+	    <div><b>Built In</b> {{listing.YearBuilt}}</div>
+	    <div><b>Status</b> {{listing.StatusString}}</div>
+	    <div><b>Listing Agent</b> {{listing.ListAgentInfo}}</div>
+	    <div class="specs-shim"></div>
+  	</li>
+  
+</ul>
+</div>
+
+
+
+

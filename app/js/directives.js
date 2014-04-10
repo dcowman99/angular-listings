@@ -1,8 +1,6 @@
 'use strict';
 
 /* Directives */
-
-
 angular.module('listingsApp.directives', [])
 
 //Is this map loading every time we navigate back to page 1?
@@ -31,20 +29,44 @@ angular.module('listingsApp.directives', [])
 					if(map.latlongs){map.latlongs.clear();}
 					map.entities.push(latlongs);	      		
 				}             
-			});  
+			}); 
+        	
+//         elem.bind('click', function() {
+//     	   console.log('i have been clicked');
+//     	   });
         }
       };
-});
+})
 
 //attrs.$observe('mapOptions',function(){});
 
-//.directive('passObject', function() {
-//    return {
-//        restrict: 'E',
-//        scope: { options: '=' },
-//        template: '<div>Hello, {{options.prop}}!</div>'
-//    };
-//});
+//Attribute: gallery-card
+.directive('galleryCard', ['$location', function($location) {
+    return {
+        restrict: 'A',
+        templateUrl: './partials/galleryCard.html',
+        link: function (scope, elem, attrs) {
+        	scope.listing.currPhoto=1;
+            scope.nextPhoto= function(){
+            	if(scope.listing.currPhoto < scope.listing.MultiplePhotoCount){
+	            	scope.listing.currPhoto++;
+	            	document.getElementById('img_'+scope.listing.ListingID).src='http:'+scope.listing.PhotoSourcePath+'HBMLG_'+scope.listing.MLSListingID+scope.letters[scope.listing.currPhoto-1]+'.jpg';
+	            }
+            };
+            scope.prevPhoto= function(){
+            	if(scope.listing.currPhoto > 1){
+	            	scope.listing.currPhoto--;
+	            	document.getElementById('img_'+scope.listing.ListingID).src='http:'+scope.listing.PhotoSourcePath+'HBMLG_'+scope.listing.MLSListingID+scope.letters[scope.listing.currPhoto-1]+'.jpg';
+	            }
+           };
+           
+           scope.clickHandler = function() {
+        	  // $location.path('/listingDetail/'+scope.listing._id);
+           };
+
+        }
+    };
+}]);
 
 
 

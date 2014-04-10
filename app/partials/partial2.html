@@ -16,10 +16,10 @@
 
 <div class="container">
 	<div class="row">
-	    <div ng-repeat="item in listings" class="col-xs-12 col-sm-6 col-md-4 gallery-container" >
-	        <a href="#/view5/{{item._id}}"><img ng-src="http:{{item.PhotoSourcePath}}HBMLG_{{item.MLSListingID}}.jpg" class="img-thumbnail gallery-img" /></a>
-	        <div class="gallery-address">{{item.Address}} {{item.City}}, {{item.Region}} {{item.ZipCode}}</div>
-	        <div>{{item.FormattedListingPrice}}</div>
+	    <div ng-repeat="listing in listings" class="col-xs-12 col-sm-6 col-md-4 gallery-container" >
+	        
+	        <div gallery-card></div>
+
 	    </div>
     </div>
 </div>

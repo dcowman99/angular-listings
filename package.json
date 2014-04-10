@@ -2,6 +2,7 @@
   "name": "angular-listings",
   "description": "A starter project for AngularJS",
   "devDependencies": {
+  	"express": "3.5.1",
     "phantomjs" : "~1.9",
     "karma" : "~0.10",
     "karma-junit-reporter" : "~0.1",

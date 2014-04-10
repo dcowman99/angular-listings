@@ -1,0 +1,13 @@
+
+
+
+<img id="img_{{listing.ListingID}}" ng-swipe-left="nextPhoto();" ng-swipe-right="prevPhoto();" ng-click="clickHandler();" ng-src="http:{{listing.PhotoSourcePath}}HBMLG_{{listing.MLSListingID}}.jpg" class="img-thumbnail gallery-img nonDraggableImage phone-listing" />
+<div class="gallery-address">{{listing.Address}} {{listing.City}}, {{listing.Region}} {{listing.ZipCode}}</div>
+<div>{{listing.FormattedListingPrice}}</div>
+
+<span class="hand" ng-click="prevPhoto();">&lt;</span>
+<span>photo</span>
+<span id="currImg_{{listing.ListingID}}"> ({{listing.currPhoto}}</span><span> of {{ listing.MultiplePhotoCount }})</span>
+<span class="hand" ng-click="nextPhoto();">&gt;</span>
+
+

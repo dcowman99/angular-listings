@@ -4,6 +4,7 @@
 // Declare App-level module with its dependencies
 angular.module('listingsApp', [
   'ngRoute',
+  'ngAnimate',
   'ngTouch',
   'ui.bootstrap',
   'vr.directives.slider',
@@ -13,7 +14,7 @@ angular.module('listingsApp', [
 ])
 
 // Declare client-side routing for single-page-app
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', '$locationProvider',	function($routeProvider, $locationProvider) {
   $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'Ctrl1'});
   $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'Ctrl2'});
   $routeProvider.when('/view5/:id', {templateUrl: 'partials/detail.html', controller: 'Ctrl5'});
@@ -21,6 +22,7 @@ angular.module('listingsApp', [
   $routeProvider.when('/view4', {templateUrl: 'partials/partial4.html', controller: 'Ctrl4'});
   $routeProvider.when('/', {templateUrl: 'partials/partial1.html', controller: 'Ctrl1'});
   $routeProvider.otherwise({redirectTo: '/view1'});
+  $locationProvider.hashPrefix('!');
 }])
 
 //------ Custom configuration to enable Form-encoded posts instead of application/json in the querystring

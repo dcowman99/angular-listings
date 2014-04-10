@@ -43,7 +43,17 @@ angular.module('listingsApp.services', ['ngResource'])
 					{query:{method:'JSONP', params: {id:listingId}}
 			});
 		},
-		
+		jsonpListings: function(){ 
+			     return $http.jsonp('http://localhost:3000/jsonp/listings/', {params:{pricemin:50000,pricemax:500000}}
+			     //,{method:'JSONP', data:{pricemin:50000,pricemax:500000}, isArray:true }
+			     );
+		},
+		getOneListing: function(listingId) {
+            return $http.jsonp('http://localhost:3000/jsonp/listing/', {params: {listingid:listingId}});
+        },
+        
+        
+        
 		//Define objects that will be injected into any controller that uses this service
 		searchParams: {
 			 criteria:{ListingPrice: {$gte:40000, $lte:5000000 }},  

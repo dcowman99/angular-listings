@@ -8,11 +8,11 @@ angular.module('listingsApp.controllers', [])
 //controller for main index page
 .controller('ctrl-base', ['$scope', '$rootScope', '$http', 'ListingSearch', '$location', function($scope, $rootScope, $http, ListingSearch, $location){  
 	$scope.$on('$locationChangeSuccess', function(event) {
-		  console.log($location.path());
+		  console.log($location.path());   //url changed
 		});
 
 	$scope.isActive = function (view) { 
-        return view === $location.path();
+        return view === $location.path();  //Checks whether passed in view is the currently loaded view (for CSS active class)
     };
 	
 	  $('.dropdown-toggle').dropdown();  //Setup drop down menu
@@ -91,6 +91,9 @@ angular.module('listingsApp.controllers', [])
 .controller('Ctrl2', ['$scope', '$rootScope', '$http', 'ListingSearch', function($scope, $rootScope, $http, ListingSearch) { 
 	$('#mapDiv').hide();
 	$scope.searchParams = ListingSearch.searchParams;
+	$scope.letters=["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm", "nn", "oo", "pp", "qq", "rr", "ss", "tt", "uu", "vv", "ww", "xx", "yy", "zz"];
+	
+	//http:{{item.PhotoSourcePath}}HBMLG_{{item.MLSListingID}}.jpg
 	
 	$rootScope.$on('listingsChanged', function () {
 		console.log('Ctrl2:listingsChanged: ');
@@ -116,6 +119,8 @@ angular.module('listingsApp.controllers', [])
 		  console.log('pagenum changed: '+ $scope.searchParams.pgnum);
 		  $scope.getListings(false);
 	  });
+
+	  
   }])
 
 .controller('Ctrl5', ['$scope', '$routeParams','ListingSearch', function($scope, $routeParams, ListingSearch) {
@@ -125,7 +130,10 @@ angular.module('listingsApp.controllers', [])
 			  console.log($scope.listing.Address);
 		 
 				if($scope.listing.PhotoAtHBM) {
-				var letters=["", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll", "mm", "nn", "oo", "pp", "qq", "rr", "ss", "tt", "uu", "vv", "ww", "xx", "yy", "zz"];
+				var letters=["", "a", "b", "c", "d", "e", "f",
+				             "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+				             "x", "y", "z", "aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj", "kk", "ll",
+				             "mm", "nn", "oo", "pp", "qq", "rr", "ss", "tt", "uu", "vv", "ww", "xx", "yy", "zz"];
 				$scope.thumbs=[];
 				for (var i = 0; i <= $scope.listing.MultiplePhotoCount-1; i++) {
 		            $scope.thumbs.push($scope.listing.PhotoSourcePath + $scope.listing.MLSListingID + letters[i] + '.jpg');
@@ -141,10 +149,22 @@ angular.module('listingsApp.controllers', [])
 //			 $scope.mainImageUrl = imageUrl;
 //		 };
 
+}])
+.controller('Ctrl3', ['$scope', '$rootScope', '$http', 'ListingSearch', function($scope, $rootScope, $http, ListingSearch) { 
+	$('#mapDiv').hide();
+	$scope.searchParams = ListingSearch.searchParams;
+	  
+	$scope.getJsonpListings = function() {
+		$scope.listings = ListingSearch.jsonpListings();
+	};
+	
+	$scope.getOneListing = function(listingid) {
+		$scope.listings = ListingSearch.getOneListing(listingid);
+	};
+	
 }]);
 
-
-function Ctrl3($scope) {
+function Ctrl7($scope) {
 	$('#mapDiv').hide();
 	  $scope.alerts = [
 	    { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
@@ -159,6 +179,8 @@ function Ctrl3($scope) {
 	                  "but wait! A third!"
 	                ];
 	  $scope.cost = 350;
+	  
+	  
 }
 
 
